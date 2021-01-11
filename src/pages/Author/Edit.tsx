@@ -1,19 +1,17 @@
-import {FC, useState} from 'react';
+import {FC, useContext, useState} from 'react';
 import {Button, TextField} from "@material-ui/core";
 import {useHistory} from "react-router-dom";
 import {IAuthor} from "./type";
+import {IStoreContext} from "../../_store";
+import StoreContext from "../../_store/Context";
 
 /**
  * Component File Description
  */
 const Edit: FC<any> = () => {
     const {push, goBack} = useHistory();
-    const [author, setAuthor] = useState<IAuthor>({
-        name: 'Aykut',
-        surname: 'Sezgin',
-        age: 26,
-        job: 'Front End Developer'
-    });
+    const {store, setStore}: IStoreContext = useContext<IStoreContext>(StoreContext);
+    const [author, setAuthor] = useState<IAuthor>(store.author);
 
     const handleChange = (e: any) => {
         setAuthor({
@@ -24,6 +22,7 @@ const Edit: FC<any> = () => {
 
     const handleSubmit = (e: any) => {
         e.preventDefault();
+        setStore({author});
         push('/author');
     };
 

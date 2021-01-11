@@ -1,15 +1,18 @@
+/** @jsxRuntime classic */
 import 'react-app-polyfill/ie11';
-import 'core-js/stable';
-import {StrictMode} from 'react';
+import React from 'react';
 import ReactDOM from 'react-dom';
 import './_assets/style/main.scss';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import {StoreProvider} from "./_store";
 
 ReactDOM.render(
-    <StrictMode>
-        <App/>
-    </StrictMode>,
+    <React.StrictMode>
+        <StoreProvider>
+            <App/>
+        </StoreProvider>
+    </React.StrictMode>,
     document.getElementById('root')
 );
 

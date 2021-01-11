@@ -1,20 +1,18 @@
-import {FC} from "react";
+import {FC, useContext} from "react";
 import {Button} from "@material-ui/core";
-import {useHistory} from "react-router-dom";
+import {useHistory, useParams} from "react-router-dom";
 import {IUser} from "./type";
+import {IStoreContext} from "../../_store";
+import StoreContext from "../../_store/Context";
 
 /**
  * Component File Description
  */
 const Detail: FC<any> = () => {
     const {push}: any = useHistory();
-    const user: IUser = {
-        id: 1,
-        first_name: 'Ali',
-        last_name: 'Veli',
-        email: 'a@a.com',
-        avatar: ''
-    };
+    const {id}: any = useParams();
+    const {store: {users}}: IStoreContext = useContext<IStoreContext>(StoreContext);
+    const user: IUser = users[id - 1];
 
     return (
         <>

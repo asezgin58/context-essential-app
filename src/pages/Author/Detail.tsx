@@ -1,19 +1,15 @@
-import {FC} from "react";
+import {FC, useContext} from "react";
 import {Button} from "@material-ui/core";
 import {useHistory} from "react-router-dom";
-import {IAuthor} from "./type";
+import {IStoreContext} from "../../_store";
+import StoreContext from "../../_store/Context";
 
 /**
  * Component File Description
  */
 const Detail: FC<any> = () => {
     const {push} = useHistory();
-    const author: IAuthor = {
-        name: 'Aykut',
-        surname: 'Sezgin',
-        age: 26,
-        job: 'Front End Developer'
-    };
+    const {store: {author}}: IStoreContext = useContext<IStoreContext>(StoreContext);
 
     return (
         <>

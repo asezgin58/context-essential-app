@@ -1,36 +1,38 @@
-import {FC, useEffect, useState} from 'react';
+import {FC, useContext, useEffect} from 'react';
 import {Button, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow} from "@material-ui/core";
 import {IUser} from "./type";
 import {useHistory} from "react-router-dom";
 import useAxios from "axios-hooks";
+import {IStoreContext} from "../../_store";
+import StoreContext from "../../_store/Context";
 
 /**
  * Component File Description
  */
 const List: FC<any> = () => {
     const {push} = useHistory();
-    const [userList, setUserList] = useState<IUser[]>([]);
-    const [, userListRequest] = useAxios({
+    const {store: {users}, setStore}: IStoreContext = useContext<IStoreContext>(StoreContext);
+    const [, usersRequest] = useAxios({
         url: 'https://reqres.in/api/users?per_page=12',
         method: 'get'
     }, {manual: true});
 
     const getUser = async () => {
-        const {data, status} = await userListRequest();
-        if (status === 200) setUserList(data?.data);
+        const {data, status} = await usersRequest();
+        if (status === 200) setStore({users: data?.data});
     };
 
     useEffect(() => {
-        if (!userList.length) {
+        if (!users.length) {
             getUser();
         }
         // eslint-disable-next-line
     }, []);
 
     const deleteUser = (userId: number) => {
-        const filterList: IUser[] = [...userList];
+        const filterList: IUser[] = [...users];
         filterList.splice(filterList.findIndex((item: IUser) => item.id === userId), 1);
-        setUserList(filterList);
+        setStore({users: filterList});
     };
 
     return (
@@ -51,7 +53,7 @@ const List: FC<any> = () => {
                                 </TableRow>
                             </TableHead>
                             <TableBody>
-                                {userList.map((row: IUser, index: number) => (
+                                {users.map((row: IUser, index: number) => (
                                     <TableRow key={row.id}>
                                         <TableCell component="th" scope="row">
                                             {index + 1}
