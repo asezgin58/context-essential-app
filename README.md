@@ -3,6 +3,7 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 This project was used with Context for state management.
+- Store management is provided with **useState**.
 
 ## Available Scripts
 

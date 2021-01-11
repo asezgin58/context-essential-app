@@ -1,6 +1,6 @@
 import {useState} from 'react';
 import StoreContext from '../Context';
-import {IStore, initialStoreData} from "../type";
+import {IStore, initialStoreData, IStoreValue} from "../type";
 
 const StoreProvider = (props: any) => {
     const [store, setStore] = useState<IStore>(initialStoreData);
@@ -12,14 +12,14 @@ const StoreProvider = (props: any) => {
         }));
     };
 
+    const storeValue: IStoreValue = {
+        store,
+        setStore: (data: any) => handleSetStore(data)
+    };
+
     return (
         <>
-            <StoreContext.Provider
-                value={{
-                    store,
-                    setStore: (data: any) => handleSetStore(data),
-                }}
-            >
+            <StoreContext.Provider value={storeValue}>
                 {props.children}
             </StoreContext.Provider>
         </>

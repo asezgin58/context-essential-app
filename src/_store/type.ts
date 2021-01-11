@@ -6,6 +6,11 @@ export interface IStore {
     users: IUser[];
 }
 
+export type IStoreValue = {
+    store: IStore;
+    setStore: (data: any) => void
+}
+
 export const initialStoreData: IStore = {
     author: {
         name: 'Aykut',
