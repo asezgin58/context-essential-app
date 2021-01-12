@@ -1,10 +1,11 @@
-import {FC} from 'react';
-import {Header, Sidebar} from "./components";
+import {FC, ReactNode} from 'react';
+import Header from "./Header";
+import Sidebar from "./Sidebar";
 
 /**
  * Page layout Description
  */
-const Layout: FC<any> = (props: { children: React.ReactNode }) => {
+const Layout: FC<any> = (props: { children: ReactNode }) => {
     return (
         <>
             <Header
