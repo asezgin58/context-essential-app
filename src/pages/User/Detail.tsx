@@ -12,7 +12,7 @@ const Detail: FC<any> = () => {
     const {push}: any = useHistory();
     const {id}: any = useParams();
     const {store: {users}}: IStoreContext = useContext<IStoreContext>(StoreContext);
-    const user: IUser = users[id - 1];
+    const user: IUser = users.filter((item: IUser) => item.id === parseInt(id))[0];
 
     return (
         <>
