@@ -1,5 +1,5 @@
 import {Route} from 'react-router-dom';
-import Layout from '../Layout';
+import Layout from '../_Layout';
 
 const PublicRoute = ({component: Component, ...rest}: any) => {
     return (
