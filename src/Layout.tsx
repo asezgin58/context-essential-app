@@ -1,16 +1,15 @@
 import {FC} from 'react';
-import Header from "../Header/index";
-import Sidebar from "../Sidebar/index";
+import {Header, Sidebar} from "./components";
 
 /**
- * Page Layout Description
+ * Page layout Description
  */
 const Layout: FC<any> = (props: { children: React.ReactNode }) => {
     return (
         <>
             <Header
                 logo={'/images/logo.svg'}
-                title={'Context Essential App'}
+                title={'Context State Essential App'}
             />
             <Sidebar/>
             <div className="content p-3">
